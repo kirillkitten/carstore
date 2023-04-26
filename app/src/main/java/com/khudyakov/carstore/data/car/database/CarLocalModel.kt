@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity("cars")
+@Entity(tableName = "cars")
 data class CarLocalModel(
     val name: String,
-    @ColumnInfo("image_path") val imagePath: String,
+    @ColumnInfo(name = "image_path") val imagePath: String,
     val year: Int,
     val volume: Double,
     @PrimaryKey val date: Long

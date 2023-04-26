@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CarDao {
-
     @Query("SELECT * FROM cars")
     fun getCars(): Flow<List<CarLocalModel>>
 
