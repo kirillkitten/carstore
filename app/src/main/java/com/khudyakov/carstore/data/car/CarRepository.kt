@@ -10,10 +10,10 @@ import javax.inject.Inject
 class CarRepository @Inject constructor(private val database: CarDao) {
 
     private val CarLocalModel.asDomainModel
-        get() = Car(name, imagePath, year, volume, Date(date))
+        get() = Car(name, imagePath, year, volume, date)
 
     private val Car.asLocalModel
-        get() = CarLocalModel(name, imagePath, year, volume, date.time)
+        get() = CarLocalModel(name, imagePath, year, volume, date)
 
     fun getCars(): Flow<List<Car>> = database.getCars().map { list ->
         list.map { carLocal -> carLocal.asDomainModel }

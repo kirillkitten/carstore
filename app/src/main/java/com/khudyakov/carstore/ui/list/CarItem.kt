@@ -15,19 +15,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.khudyakov.carstore.data.car.Car
-import java.util.Date
 
 @Composable
 fun CarItem(car: Car) {
-    Column(modifier = Modifier.padding(all = 8.dp)) {
+    Column(modifier = Modifier.padding(all = 16.dp)) {
         AsyncImage(
             model = car.imagePath,
             contentDescription = null,
             placeholder = ColorPainter(color = Color.Gray),
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f)
-                .clip(RoundedCornerShape(8.dp))
+                .aspectRatio(4f / 3f)
+                .clip(RoundedCornerShape(16.dp))
         )
         Text(text = car.name, modifier = Modifier.padding(top = 8.dp))
         Text(text = car.year.toString(), modifier = Modifier.padding(top = 8.dp))
@@ -37,5 +36,5 @@ fun CarItem(car: Car) {
 @Preview(showBackground = true, widthDp = 160)
 @Composable
 fun CarItemPreview() {
-    CarItem(car = Car("Toyota", "", 2008, 1.6, Date(System.currentTimeMillis())))
+    CarItem(car = Car("Toyota", "", 2008, 1.6, System.currentTimeMillis()))
 }

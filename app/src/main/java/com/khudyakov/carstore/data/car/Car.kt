@@ -7,5 +7,5 @@ data class Car(
     val imagePath: String,
     val year: Int,
     val volume: Double,
-    val date: Date
+    val date: Long
 )
