@@ -7,9 +7,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.twotone.DirectionsCar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -36,7 +36,7 @@ fun ListScreen(cars: List<Car>, onAddClick: () -> Unit) {
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Icon(imageVector = Icons.TwoTone.DirectionsCar, contentDescription = null)
+                    Icon(imageVector = Icons.Default.DirectionsCar, contentDescription = null)
                 },
                 actions = {
                     IconButton(onClick = {}) {

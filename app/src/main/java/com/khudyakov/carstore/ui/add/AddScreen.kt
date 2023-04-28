@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.twotone.DirectionsCar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -47,7 +47,7 @@ fun AddScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Icon(imageVector = Icons.TwoTone.DirectionsCar, contentDescription = null)
+                    Icon(imageVector = Icons.Default.DirectionsCar, contentDescription = null)
                 },
                 navigationIcon = {
                     IconButton(onClick = onCancel) {
