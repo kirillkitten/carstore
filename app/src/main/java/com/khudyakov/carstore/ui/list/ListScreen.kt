@@ -24,14 +24,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.khudyakov.carstore.data.car.Car
 
 @Composable
-fun ListScreen(viewModel: ListViewModel) {
+fun ListScreen(viewModel: ListViewModel, onAddClick: () -> Unit) {
     val cars = viewModel.cars.collectAsState(initial = emptyList())
-    ListScreen(cars = cars.value, onAddClicked = {})
+    ListScreen(cars = cars.value, onAddClick = onAddClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(cars: List<Car>, onAddClicked: () -> Unit) {
+fun ListScreen(cars: List<Car>, onAddClick: () -> Unit) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -49,7 +49,7 @@ fun ListScreen(cars: List<Car>, onAddClicked: () -> Unit) {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddClicked, shape = CircleShape) {
+            FloatingActionButton(onClick = onAddClick, shape = CircleShape) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
         },
@@ -76,5 +76,5 @@ fun ListScreenPreview() {
         Car("Lada", "", 2011, 1.4, time - 200000000L),
         Car("Volkswagen", "", 2020, 1.6, time - 300000000L)
     )
-    ListScreen(cars = cars, onAddClicked = {})
+    ListScreen(cars = cars, onAddClick = {})
 }

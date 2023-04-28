@@ -8,6 +8,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.khudyakov.carstore.ui.add.AddScreen
 import com.khudyakov.carstore.ui.info.InfoScreen
 import com.khudyakov.carstore.ui.list.ListScreen
 import com.khudyakov.carstore.ui.settings.SettingsScreen
@@ -31,7 +32,16 @@ fun AppContent() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "list") {
         composable("list") {
-            ListScreen(hiltViewModel())
+            ListScreen(
+                viewModel = hiltViewModel(),
+                onAddClick = { navController.navigate("add") }
+            )
+        }
+        composable("add") {
+            AddScreen(
+                viewModel = hiltViewModel(),
+                onCancel = { navController.navigateUp() }
+            )
         }
         composable("info") {
             InfoScreen()
