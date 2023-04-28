@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">CarStore</string>
+    <string name="app_name" translatable="false">CarStore</string>
+    <string name="name">Car name</string>
+    <string name="year">Year</string>
+    <string name="volume">Engine capacity</string>
+    <string name="date">Offer created on</string>
 </resources>

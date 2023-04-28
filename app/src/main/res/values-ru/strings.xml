@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Марка автомобиля</string>
+    <string name="year">Год выпуска</string>
+    <string name="volume">Объем двигателя</string>
+    <string name="date">Объявление создано</string>
+</resources>
