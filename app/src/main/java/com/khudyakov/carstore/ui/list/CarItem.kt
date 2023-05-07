@@ -11,18 +11,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.khudyakov.carstore.data.car.Car
 
 @Composable
-fun CarItem(car: Car) {
-    Column(modifier = Modifier.padding(all = 16.dp)) {
+fun CarItem(car: Car, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
         AsyncImage(
             model = car.imagePath,
             contentDescription = null,
             placeholder = ColorPainter(color = Color.Gray),
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(4f / 3f)

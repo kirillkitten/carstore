@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.khudyakov.carstore.data.car.Car
 
 @Composable
@@ -57,10 +58,13 @@ fun ListScreen(cars: List<Car>, onAddClick: () -> Unit) {
     ) { padding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(count = 2),
-            modifier = Modifier.padding(padding)
+            modifier = Modifier.padding(padding).padding(top = 16.dp)
         ) {
             items(cars) { car ->
-                CarItem(car = car)
+                CarItem(
+                    car = car,
+                    modifier = Modifier.padding(all = 16.dp)
+                )
             }
         }
     }
