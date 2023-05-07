@@ -40,7 +40,7 @@ fun AppContent() {
         composable("add") {
             AddScreen(
                 viewModel = hiltViewModel(),
-                onCancel = { navController.navigateUp() }
+                onBack = { navController.navigateUp() }
             )
         }
         composable("info") {

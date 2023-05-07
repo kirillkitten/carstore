@@ -4,9 +4,10 @@ import com.khudyakov.carstore.data.car.database.CarDao
 import com.khudyakov.carstore.data.car.database.CarLocalModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.Date
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CarRepository @Inject constructor(private val database: CarDao) {
 
     private val CarLocalModel.asDomainModel

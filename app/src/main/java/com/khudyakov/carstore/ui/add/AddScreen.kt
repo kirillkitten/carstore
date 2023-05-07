@@ -1,33 +1,41 @@
 package com.khudyakov.carstore.ui.add
 
+import android.net.Uri
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FabPosition
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.khudyakov.carstore.R
 
 @Composable
-fun AddScreen(viewModel: AddViewModel, onCancel: () -> Unit) {
+fun AddScreen(viewModel: AddViewModel, onBack: () -> Unit) {
+    if (viewModel.navigateUp) onBack()
+
     AddScreen(
         onAdd = viewModel::addCar,
-        onCancel = onCancel,
-        name = viewModel.name,
+        onCancel = onBack,
+        name = viewModel.nameText,
         onNameChange = viewModel::updateName,
-        year = viewModel.year,
+        year = viewModel.yearText,
         onYearChange = viewModel::updateYear,
-        volume = viewModel.volume,
-        onVolumeChange = viewModel::updateNVolume
+        volume = viewModel.volumeText,
+        onVolumeChange = viewModel::updateNVolume,
+        image = viewModel.imageUri,
+        onImageChange = viewModel::updateImage,
+        addButtonEnabled = viewModel.addButtonEnabled
     )
 }
 
@@ -42,6 +50,9 @@ fun AddScreen(
     onYearChange: (String) -> Unit,
     volume: String,
     onVolumeChange: (String) -> Unit,
+    image: Uri?,
+    onImageChange: (Uri?) -> Unit,
+    addButtonEnabled: Boolean
 ) {
     Scaffold(
         topBar = {
@@ -55,23 +66,29 @@ fun AddScreen(
                     }
                 }
             )
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = onAdd, shape = CircleShape) {
-                Icon(imageVector = Icons.Default.Done, contentDescription = null)
-            }
-        },
-        floatingActionButtonPosition = FabPosition.Center
+        }
     ) { padding ->
-        CarForm(
-            name = name,
-            onNameChange = onNameChange,
-            year = year,
-            onYearChange = onYearChange,
-            volume = volume,
-            onVolumeChange = onVolumeChange,
-            modifier = Modifier.padding(padding)
-        )
+        Column(modifier = Modifier
+            .padding(padding)
+            .padding(all = 16.dp)) {
+            CarForm(
+                name = name,
+                onNameChange = onNameChange,
+                year = year,
+                onYearChange = onYearChange,
+                volume = volume,
+                onVolumeChange = onVolumeChange,
+                image = image,
+                onImageChange = onImageChange
+            )
+            Button(
+                onClick = onAdd,
+                enabled = addButtonEnabled,
+                modifier = Modifier.padding(top = 16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.save))
+            }
+        }
     }
 }
 
@@ -86,6 +103,9 @@ fun AddScreenPreview() {
         year = "2013",
         onYearChange = {},
         volume = "1.6",
-        onVolumeChange = {}
+        onVolumeChange = {},
+        image = null,
+        onImageChange = {},
+        addButtonEnabled = true
     )
 }
