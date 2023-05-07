@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.khudyakov.carstore.R
+import com.khudyakov.carstore.ui.theme.CarStoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -133,14 +134,16 @@ fun ImagePicker(imageUri: Uri?, onImageUpdate: (Uri?) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun CarFormPreviewLight() {
-    CarForm(
-        name = "Toyota",
-        onNameChange = {},
-        year = "2013",
-        onYearChange = {},
-        volume = "1.6",
-        onVolumeChange = {},
-        image = null,
-        onImageChange = {}
-    )
+    CarStoreTheme {
+        CarForm(
+            name = "Toyota",
+            onNameChange = {},
+            year = "2013",
+            onYearChange = {},
+            volume = "1.6",
+            onVolumeChange = {},
+            image = null,
+            onImageChange = {}
+        )
+    }
 }

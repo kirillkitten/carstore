@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.khudyakov.carstore.R
+import com.khudyakov.carstore.ui.theme.CarStoreTheme
 
 @Composable
 fun AddScreen(viewModel: AddViewModel, onBack: () -> Unit) {
@@ -95,17 +96,19 @@ fun AddScreen(
 @Preview
 @Composable
 fun AddScreenPreview() {
-    AddScreen(
-        onAdd = {},
-        onCancel = {},
-        name = "Toyota",
-        onNameChange = {},
-        year = "2013",
-        onYearChange = {},
-        volume = "1.6",
-        onVolumeChange = {},
-        image = null,
-        onImageChange = {},
-        addButtonEnabled = true
-    )
+    CarStoreTheme {
+        AddScreen(
+            onAdd = {},
+            onCancel = {},
+            name = "Toyota",
+            onNameChange = {},
+            year = "2013",
+            onYearChange = {},
+            volume = "1.6",
+            onVolumeChange = {},
+            image = null,
+            onImageChange = {},
+            addButtonEnabled = true
+        )
+    }
 }

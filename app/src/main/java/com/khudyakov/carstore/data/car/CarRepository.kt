@@ -22,4 +22,5 @@ class CarRepository @Inject constructor(private val database: CarDao) {
 
     suspend fun addCar(car: Car) = database.insertCar(car.asLocalModel)
 
+    suspend fun getCar(id: Long): Car = database.getCar(id).asDomainModel
 }

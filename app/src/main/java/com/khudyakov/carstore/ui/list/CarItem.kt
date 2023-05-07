@@ -1,5 +1,6 @@
 package com.khudyakov.carstore.ui.list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,10 +17,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.khudyakov.carstore.data.car.Car
+import com.khudyakov.carstore.ui.theme.CarStoreTheme
 
 @Composable
-fun CarItem(car: Car, modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
+fun CarItem(car: Car, onClick: (Long) -> Unit) {
+    Column(
+        modifier = Modifier
+            .clickable {
+                onClick(car.id)
+            }
+            .padding(all = 16.dp)
+    ) {
         AsyncImage(
             model = car.imagePath,
             contentDescription = null,
@@ -38,5 +46,10 @@ fun CarItem(car: Car, modifier: Modifier = Modifier) {
 @Preview(showBackground = true, widthDp = 160)
 @Composable
 fun CarItemPreview() {
-    CarItem(car = Car("Toyota", "", 2008, 1.6, System.currentTimeMillis()))
+    CarStoreTheme {
+        CarItem(
+            car = Car("Toyota", "", 2008, 1.6, System.currentTimeMillis()),
+            onClick = {}
+        )
+    }
 }

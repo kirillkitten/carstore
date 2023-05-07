@@ -23,16 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.khudyakov.carstore.data.car.Car
+import com.khudyakov.carstore.ui.theme.CarStoreTheme
 
 @Composable
-fun ListScreen(viewModel: ListViewModel, onAddClick: () -> Unit) {
+fun ListScreen(viewModel: ListViewModel, onAddClick: () -> Unit, onItemClick: (Long) -> Unit) {
     val cars = viewModel.cars.collectAsState(initial = emptyList())
-    ListScreen(cars = cars.value, onAddClick = onAddClick)
+    ListScreen(cars = cars.value, onAddClick = onAddClick, onItemClick = onItemClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(cars: List<Car>, onAddClick: () -> Unit) {
+fun ListScreen(cars: List<Car>, onAddClick: () -> Unit, onItemClick: (Long) -> Unit) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -58,12 +59,14 @@ fun ListScreen(cars: List<Car>, onAddClick: () -> Unit) {
     ) { padding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(count = 2),
-            modifier = Modifier.padding(padding).padding(top = 16.dp)
+            modifier = Modifier
+                .padding(padding)
+                .padding(top = 16.dp)
         ) {
             items(cars) { car ->
                 CarItem(
                     car = car,
-                    modifier = Modifier.padding(all = 16.dp)
+                    onClick = onItemClick
                 )
             }
         }
@@ -80,5 +83,7 @@ fun ListScreenPreview() {
         Car("Lada", "", 2011, 1.4, time - 200000000L),
         Car("Volkswagen", "", 2020, 1.6, time - 300000000L)
     )
-    ListScreen(cars = cars, onAddClick = {})
+    CarStoreTheme {
+        ListScreen(cars = cars, onAddClick = {}, onItemClick = {})
+    }
 }

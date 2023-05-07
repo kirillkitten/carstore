@@ -12,4 +12,7 @@ interface CarDao {
 
     @Insert
     suspend fun insertCar(car: CarLocalModel)
+
+    @Query("SELECT * FROM cars WHERE date = :id")
+    suspend fun getCar(id: Long): CarLocalModel
 }
